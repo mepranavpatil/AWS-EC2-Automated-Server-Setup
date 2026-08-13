@@ -1,0 +1,83 @@
+# =========================
+# Terraform
+# =========================
+
+.terraform/
+.terraform.lock.hcl
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform variable files containing secrets
+*.auto.tfvars
+terraform.tfvars
+
+# =========================
+# AWS Credentials
+# =========================
+
+.aws/
+credentials
+config
+
+# =========================
+# SSH Keys
+# =========================
+
+*.pem
+*.ppk
+id_rsa
+id_rsa.pub
+
+# =========================
+# Environment Variables
+# =========================
+
+.env
+.env.*
+
+# =========================
+# IDE Files
+# =========================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS Files
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+
+*.log
+
+# =========================
+# Temporary Files
+# =========================
+
+tmp/
+temp/
+
+# =========================
+# Sensitive Outputs
+# =========================
+
+terraform.tfstate.backup
