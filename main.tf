@@ -6,9 +6,10 @@ resource "aws_vpc" "test1vpc" {
 }
 
 resource "aws_subnet" "test1subnet" {
-  vpc_id     = aws_vpc.test1vpc.id
-  cidr_block = var.subnet_cidr
-  availability_zone = "ap-south-1a"
+  vpc_id                  = aws_vpc.test1vpc.id
+  cidr_block              = var.subnet_cidr
+  availability_zone       = "ap-south-1a"
+  map_public_ip_on_launch = true
   tags = {
     Name = "test1subnet"
   }
@@ -24,7 +25,7 @@ resource "aws_internet_gateway" "test1igw" {
 resource "aws_route_table" "test1rt" {
   vpc_id = aws_vpc.test1vpc.id
   route {
-    cidr_block = var.vpc_cidr
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.test1igw.id
   }
   tags = {
@@ -61,9 +62,14 @@ resource "aws_security_group" "test1sg" {
   }
 }
 resource "aws_instance" "test1instance" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-  subnet_id     = aws_subnet.test1subnet.id
-  security_groups = [aws_security_group.test1sg.id]
-  key_name = var.key-pair
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.test1subnet.id
+  vpc_security_group_ids = [aws_security_group.test1sg.id]
+  user_data             =file("userdata.sh")
+  associate_public_ip_address = true
+  key_name               = var.key_pair
+  tags = {
+    Name = var.instance_name
+  }
 }

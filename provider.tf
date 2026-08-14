@@ -4,9 +4,9 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 6.0"
     }
-  }  
+  }
 }
 # Configure the AWS Provider
-provider "aws"{
+provider "aws" {
   region = var.regions
 }

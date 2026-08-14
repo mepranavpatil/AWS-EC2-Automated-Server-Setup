@@ -18,18 +18,23 @@ variable "subnet_cidr" {
   default     = "10.0.1.0/24"
 }
 #instance
+variable "instance_name" {
+  description = "The name of the instance"
+  type        = string
+  default     = "test1instance"
+}
 variable "instance_type" {
   description = "The type of instance to create"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.micro"
 }
 variable "ami_id" {
   description = "The AMI ID to use for the instance"
   type        = string
-  default     = "ami-0c55b159cbfafe1d0"
+  default     = "ami-00d2dbb426772b03a"
 }
-variable "key-pair" {
+variable "key_pair" {
   description = "The name of the key pair to use for the instance"
   type        = string
-  default     = "my-key-pair"
+  default     = "Practice-with-this"
 }
