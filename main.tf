@@ -2,6 +2,7 @@ resource "aws_vpc" "test1vpc" {
   cidr_block = var.vpc_cidr
   tags = {
     Name = "test1vpc"
+    environment = "test1"
   }
 }
 
@@ -12,6 +13,7 @@ resource "aws_subnet" "test1subnet" {
   map_public_ip_on_launch = true
   tags = {
     Name = "test1subnet"
+    environment = "test1"
   }
 }
 
@@ -19,6 +21,7 @@ resource "aws_internet_gateway" "test1igw" {
   vpc_id = aws_vpc.test1vpc.id
   tags = {
     Name = "test1igw"
+    environment = "test1"
   }
 }
 
@@ -30,6 +33,7 @@ resource "aws_route_table" "test1rt" {
   }
   tags = {
     Name = "test1rt"
+    environment = "test1"
   }
 }
 resource "aws_route_table_association" "test1rta" {
@@ -46,12 +50,14 @@ resource "aws_security_group" "test1sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
+    #for SSH access from anywhere practice not realworld scenario
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
+    #for HTTP access from anywhere practice not realworld scenario
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
@@ -71,5 +77,6 @@ resource "aws_instance" "test1instance" {
   key_name               = var.key_pair
   tags = {
     Name = var.instance_name
+    environment = "test1"
   }
 }
