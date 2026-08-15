@@ -7,3 +7,6 @@ systemctl start nginx
 systemctl enable nginx
 systemctl start docker
 systemctl enable docker
+
+sudo su 
+docker pull hello-world
